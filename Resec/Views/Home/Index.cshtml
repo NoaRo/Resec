@@ -1,0 +1,40 @@
+﻿@model FilesList;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Write and save your file</p>
+</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CKEditor</title>
+    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+</head>
+<body>
+    <textarea id="editorForFiles" name="editor"></textarea>
+    <script>
+        CKEDITOR.config.language = 'en';
+        CKEDITOR.replace('editor');
+    </script>
+    <input placeholder="choose your file name" id="saveAsName" type="text" />
+    <button onclick=savefile(CKEDITOR.instances.editorForFiles.getData())>save file</button>
+    <tr>
+        <td>Select a File to Load:</td>
+        <td><input text="choose file" type="file" id="fileToLoad"></td>
+        <td><button onclick="loadFileAsText()">Load Selected File</button>
+        <td>
+    </tr>
+    <button onclick=getAllfilesInTheServer()>requestForAllFiles</button>
+    <ul id="files_list">
+        
+    </ul>
+
+
+
+</body>
+</html>
