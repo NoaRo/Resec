@@ -4,7 +4,6 @@
 // Write your JavaScript code.
 function savefile(text) {
     var fileName = document.getElementById('saveAsName').value;
-    alert(fileName)
     $.ajax({
         type: "POST",
         url: "/SaveFile",
