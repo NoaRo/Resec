@@ -45,13 +45,6 @@ namespace Resec.Controllers
         [Route("SaveFile")]
         public async Task SaveFile(string text,string name)
         {
-            
-            // DirectoryInfo di = new DirectoryInfo(docPath);
-
-            // Set a variable to the Documents path.
-            //string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-            // Write the specified text asynchronously to a new file named "WriteTextAsync.txt".
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, name)))
             {
                 await outputFile.WriteAsync(text);
@@ -75,10 +68,6 @@ namespace Resec.Controllers
             var file = Path.Combine(docPath, fileName);
 
             string SendData = System.IO.File.ReadAllText(file);
-            //using (StreamReader outputFile = new StreamReader(Path.Combine(docPath, fileName)))
-            //{
-            //    content = await outputFile.Read();
-            //}
             return Ok(SendData);
         }
 
@@ -88,38 +77,8 @@ namespace Resec.Controllers
         {
             string[] filePaths = Directory.GetFiles(docPath);
             var files = new FilesList(filePaths);
-            ViewData["filesList"] = files;
+           //ViewData["filesList"] = files;
             return Ok(files);
         }
-        /*        [HttpPost]
-                [Route("DeleteFile")]
-                public async Task DeleteFile(string text)
-                {
-                    string fileName = text;
-                    string path = docPath + fileName;
-                    FileInfo fileInfo = new FileInfo(path);
-                    if (fileInfo.Exists)
-                    {
-                        fileInfo.Delete();
-                    }
-                }*/
-        /*        public async Task saveAsync(string textForSave)
-                {
-                    List<string> Instructions_Files = new List<string>();
-
-                    // The location where instructions files should be saved.
-                    string rootFolder = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
-                    DirectoryInfo di = new DirectoryInfo(rootFolder);
-
-
-                    // Save the new instructions files in the directory.
-
-                    string filePath = Path.Combine(rootFolder, "newTextFile");
-
-                    using (var stream = System.IO.File.Create(filePath))
-                    {
-                           await formFile.CopyToAsync(stream);
-                    }
-                }*/
     }
 }

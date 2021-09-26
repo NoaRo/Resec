@@ -20,8 +20,6 @@ function loadFileAsText() {
     var fileReader = new FileReader();
     fileReader.onload = function (fileLoadedEvent) {
         var textFromFileLoaded = fileLoadedEvent.target.result;
-        // document.getElementById("editorForFiles").value = textFromFileLoaded;
-        //maby insert
         CKEDITOR.instances.editorForFiles.setData("<!DOCTYPE html><html><body>" + textFromFileLoaded + "</body></html>");
     };
     fileReader.readAsText(fileToLoad, "UTF-8");
@@ -78,7 +76,6 @@ function getFileContent(fileName) {
         type: "GET",
             url: "/GetFileContent/" + fileName,
         success: function (content) {
-            console.log(content)
             CKEDITOR.instances.editorForFiles.setData("<!DOCTYPE html><html><body>" + content + "</body></html>");
             document.getElementById('saveAsName').value = fileName;
 
